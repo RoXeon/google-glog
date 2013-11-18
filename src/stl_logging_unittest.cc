@@ -31,17 +31,20 @@
 
 #ifdef HAVE_USING_OPERATOR
 
-#ifdef __GNUC__
+#include <iostream>
+
+#if defined(__GLIBCPP__) || defined(__GLIBCXX__)
 // C++0x isn't enabled by default.
 // # define GLOG_STL_LOGGING_FOR_UNORDERED
 # define GLOG_STL_LOGGING_FOR_TR1_UNORDERED
 # define GLOG_STL_LOGGING_FOR_EXT_HASH
 # define GLOG_STL_LOGGING_FOR_EXT_SLIST
+#elif defined(_LIBCPP_VERSION)
+# define GLOG_STL_LOGGING_FOR_UNORDERED
 #endif
 
 #include "glog/stl_logging.h"
 
-#include <iostream>
 #include <map>
 #include <ostream>
 #include <string>
